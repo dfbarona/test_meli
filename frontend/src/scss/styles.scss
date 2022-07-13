@@ -1,5 +1,4 @@
 @import "colors";
-@import "fonts";
 
 $grid_system: repeat(11, 1fr);
 
@@ -10,107 +9,9 @@ $grid_system: repeat(11, 1fr);
 	text-decoration: none;
 	font-family: sans-serif;
 	box-sizing: border-box;
-	font-family: $default-font;
 
 	&:focus-visible {
 		outline: none;
 	}
 
-}
-
-.mel{
-	&-container {
-		background: $color-light;
-		height: 100vh;
-		min-height: 500px;
-		display: grid;
-		grid-template-columns: $grid_system;
-		grid-template-rows: 50px max-content max-content;
-	}
-
-	&-header {
-		background: $color-yellow;
-		grid-column-start: 1;
-		grid-column-end: 12;
-		display: grid;
-		grid-template-columns: $grid_system;
-		grid-gap: 0px 0px;
-		
-		nav {
-			grid-column-start: 2;
-			grid-column-end: 11;
-			display: flex;
-			height: 39px;
-			grid-row: none;
-
-			.logo{
-				width: 60px;
-			}
-
-			.input-group{
-				display: table;
-				border-collapse: collapse;
-				width:100%;
-				margin-left: 1rem;
-
-				& > div{
-					display: table-cell;
-					vertical-align: middle;  /* needed for Safari */
-				}
-
-				.input-group-icon{
-					background:$color-light;
-					padding: 0 12px;
-					cursor: pointer;
-					border-radius: 4px;
-					border-end-start-radius: 0px;
-					border-start-start-radius: 0px;
-					border: 0px;
-    			height: 39px;
-
-					img{
-						width: 20px;
-						margin-top: 8px;
-					}
-				}
-
-				.input-group-area{
-					width:100%;
-				}
-
-				input {
-					border: 0;
-					display: block;
-					width: 100%;
-					padding: 7px 60px 9px 15px;
-					font-size: 18px;
-    			height: 39px;
-					border-radius: 4px;
-					border-end-end-radius: 0px;
-					border-start-end-radius: 0px;
-				}
-
-			}
-		}
-	}
-
-	&-breadcrumbs{
-		grid-column-start: 2;
-		grid-column-end: 11;
-		margin: 16px 0 16px 0;
-		color: $color-muted;
-		font-size: 14px;
-	}
-
-	&-main-content {
-		background: $color-white;
-		grid-column-start: 2;
-		grid-column-end: 11;
-		border-radius: 4px;
-		padding: 16px;
-
-		.mel-msg-info {
-			color: $color-gray;
-		}
-	}
 }

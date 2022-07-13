@@ -1,16 +1,23 @@
 import IconoSearch from "./../../../assets/ic_Search@2x.png";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
-const Search = () => {
 
-	//const [params] = useSearchParams()
-  //const query = params.get('search')
+/**
+ * @description renderiza la caja de busqueda principal
+ * @author David Barona <davidfbarona@gmail.com>
+ * @date 12/07/2022
+ * @return {*} 
+ */
+const Search = (): JSX.Element => {
 
-	const search = useRef<HTMLInputElement>(null);
+	const [params] = useSearchParams()
+  const query = params.get('search')
+	
+	const searchRef = useRef<HTMLInputElement | null>(null);
 	const navigate = useNavigate()
 	
-	const redirectSearch = () => navigate(`/items?search=${search?.current?.value}`)
+	const redirectSearch = () => navigate(`/items?search=${searchRef?.current?.value}`)
 	
 	const handleClick = () => {
 		redirectSearch()
@@ -25,7 +32,7 @@ const Search = () => {
 	return (
 		<div className="input-group">
 			<div className="input-group-area">
-				<input type="text"  ref={search} placeholder="Nunca dejes de buscar" onKeyDown={handleKeyDown} />
+				<input type="text" ref={searchRef} placeholder="Nunca dejes de buscar" onKeyDown={handleKeyDown} />
 			</div>
 			<button className="input-group-icon" onClick={handleClick}>
 					<img src={IconoSearch} alt="Search" />

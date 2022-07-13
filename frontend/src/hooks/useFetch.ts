@@ -1,25 +1,50 @@
 import axios from "axios"
+import { Console } from "console"
 import { useState, useEffect } from "react"
 
 import * as config from "../config/enviroments"
 
-const useFetch = (path : string, params = {}, deps = []) => {
-  const [data, setData] = useState([])
-  const [error, setError] = useState<unknown>()
+type Methods = 'GET' 
+type StatusFetch = 'idle'| 'fetching' | 'fetched'
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get(config.API_URL + path, params)
-        setData(res.data)
-      } catch (error) {
-        setError(error)
-      }
-    };
-    path && fetchData()
-  }, deps)
+/**
+ * @description
+ * @author David Barona <davidfbarona@gmail.com>
+ * @date 12/07/2022
+ * @param {string} path
+ * @param {Methods} method
+ * @param {KeyVal} [body]
+ * @return {*}  {UseFetchReturn}
+ */
+const useFetch = ( path: string, method: Methods = 'GET', body = {}) => {
+	const [status, setStatus] = useState<StatusFetch>( 'idle' )
+	const [data, setData] = useState([])
 
-  return { data, error }
-};
+	useEffect(() => {
+		if ( !path ) return
+
+		const fetchData = async (): Promise<void> => {
+			setStatus( 'fetching' )
+
+      await axios.get(config.API_URL + path, body)
+			const response = await axios({
+        method: method,
+        url: config.API_URL + path,
+        params: body
+      })
+
+			if ( response.status && response.data ) {
+				setData( response.data )
+				setStatus( 'fetched' )
+			} else {
+				console.log("error de conexion")
+			}
+		}
+
+		fetchData()
+	}, [path])
+
+	return { status, data }
+}
 
 export default useFetch
