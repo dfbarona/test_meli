@@ -1,0 +1,55 @@
+@import "./../../../../scss/colors";
+
+.card-item {
+	display: flex;
+	margin: 16px;
+	padding-bottom: 16px;
+	border-bottom: 1px solid $color-light;
+
+	&:last-child {
+    border: 0;
+		padding-bottom: 0;
+	}
+
+	&-img {
+		margin-right: 16px;
+		border-radius: 4px;
+
+		img{
+			width: 180px;
+			height: 180px;
+			
+		}
+	}
+
+	&-content{
+
+		width: 60%;
+
+		.item-price{
+			margin-bottom: 16px;
+
+			.amount{
+				font-size: 32px;
+				margin-right: 8px;
+			}
+			.item-shipping{
+				width: 18px;
+				vertical-align: super;
+			}
+		}
+
+		.item-title{
+			font-size: 18px;
+		}
+	}
+
+	&-state{
+		font-size: 12px;
+		color: $color-gray;
+	}
+}
+
+a{
+	color: $color-dark;
+}
