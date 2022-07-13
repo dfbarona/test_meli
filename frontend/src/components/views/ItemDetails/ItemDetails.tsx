@@ -3,9 +3,9 @@ import { useParams, useNavigate  } from "react-router-dom";
 
 
 /**
- * @description renderiza la información de un producto
+ * @description
  * @author David Barona <davidfbarona@gmail.com>
- * @date 12/07/2022
+ * @date 13/07/2022
  * @return {*}  {JSX.Element}
  */
 const ItemDetails = (): JSX.Element => {

@@ -1,24 +1,30 @@
 import axios from "axios"
-import { Console } from "console"
 import { useState, useEffect } from "react"
 
 import * as config from "../config/enviroments"
+import { Item } from "../interfaces/item"
+import { openNotification } from "../utils"
 
 type Methods = 'GET' 
 type StatusFetch = 'idle'| 'fetching' | 'fetched'
 
+type UseFetchReturn = {
+	status: StatusFetch;
+	data: Item[];
+}
+
 /**
- * @description
+ * @description Hook para controlar peticiones de carga iniciales
  * @author David Barona <davidfbarona@gmail.com>
- * @date 12/07/2022
+ * @date 13/07/2022
  * @param {string} path
- * @param {Methods} method
- * @param {KeyVal} [body]
+ * @param {Methods} [method='GET']
+ * @param {*} [body={}]
  * @return {*}  {UseFetchReturn}
  */
-const useFetch = ( path: string, method: Methods = 'GET', body = {}) => {
-	const [status, setStatus] = useState<StatusFetch>( 'idle' )
-	const [data, setData] = useState([])
+const useFetch = ( path: string, method: Methods = 'GET', body = {}): UseFetchReturn => {
+	const [status, setStatus] = useState<UseFetchReturn['status']>( 'idle' )
+	const [data, setData] = useState<UseFetchReturn['data']>([])
 
 	useEffect(() => {
 		if ( !path ) return
@@ -26,19 +32,24 @@ const useFetch = ( path: string, method: Methods = 'GET', body = {}) => {
 		const fetchData = async (): Promise<void> => {
 			setStatus( 'fetching' )
 
-      await axios.get(config.API_URL + path, body)
-			const response = await axios({
-        method: method,
-        url: config.API_URL + path,
-        params: body
-      })
+			try {
+				await axios.get(config.API_URL + path, body)
+				const response = await axios({
+					method: method,
+					url: config.API_URL + path,
+					params: body
+				})
 
-			if ( response.status && response.data ) {
-				setData( response.data )
+				if ( response.status === 200 && response.data ) {
+					setData( response.data )
+					setStatus( 'fetched' )
+				} 
+			} catch (error) {
 				setStatus( 'fetched' )
-			} else {
-				console.log("error de conexion")
+				setData( [] )
+				openNotification('error', "Se ha presentado un error")
 			}
+      
 		}
 
 		fetchData()

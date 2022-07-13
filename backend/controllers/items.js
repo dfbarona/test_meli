@@ -32,7 +32,7 @@ const getItems = async (req, res) => {
     res.send(items)
 
   } catch (error) {
-    handleHttpError(res, "Get Items Error")
+    handleHttpError(res, "Error obteniendo el listado de items")
   }
 }
 
@@ -55,7 +55,7 @@ const getItem = async (req, res) => {
     res.send(infoItem)
 
   } catch (error) {
-    handleHttpError(res, "Get Item Error")
+    handleHttpError(res, "Error obteniendo la información del Item")
   }
 }
 

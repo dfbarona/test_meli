@@ -3,12 +3,10 @@ import React from 'react'
 import './scss/styles.scss';
 
 import { Outlet } from "react-router-dom";
-
+import {Toaster} from "react-hot-toast"
 import Header from './components/Header'
 import Breadcrumbs from './components/Breadcrumbs'
 import Content from './components/Content'
-
-
 
 /**
  * @description renderiza el layout principal
@@ -24,6 +22,9 @@ const Layout = (): JSX.Element => {
 			<Content> 
 				<Outlet />
 			</Content>
+			<Toaster 
+				position="bottom-left"
+			/>
 		</section>
 	)
 }
