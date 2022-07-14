@@ -10,7 +10,13 @@ import ItemDetails from './components/views/ItemDetails'
 
 import * as paths_routes from './constants/router/paths'
 
-const App = () => {
+/**
+ * @description Renderiza la aplicación
+ * @author David Barona <davidfbarona@gmail.com>
+ * @date 13/07/2022
+ * @return {*} {JSX.Element}
+ */
+const App = (): JSX.Element => {
 
   return (
     <BrowserRouter>

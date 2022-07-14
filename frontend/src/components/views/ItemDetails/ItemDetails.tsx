@@ -1,6 +1,9 @@
-import React from 'react'
-import { useParams, useNavigate  } from "react-router-dom";
+import { useParams  } from "react-router-dom"
+import useFetch from '../../../hooks/useFetch'
+import { Item } from "../../../interfaces/item"
 
+import ShowItem from '../../common/ShowItem'
+import SkeletonShowItem from "../../common/ShowItem/SkeletonShowItem"
 
 /**
  * @description
@@ -9,10 +12,17 @@ import { useParams, useNavigate  } from "react-router-dom";
  * @return {*}  {JSX.Element}
  */
 const ItemDetails = (): JSX.Element => {
-	//const { id } = useParams();
+	const { id } = useParams();
   
+  const {data, status} = useFetch(`/items/${id}`)
+
   return (
     <>
+     {status !== 'fetched' ? (
+        <>
+          <SkeletonShowItem />
+        </>
+      ) : <ShowItem item={data as Item}></ShowItem>}
       
     </>
   );

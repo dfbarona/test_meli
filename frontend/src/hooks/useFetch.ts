@@ -8,9 +8,14 @@ import { openNotification } from "../utils"
 type Methods = 'GET' 
 type StatusFetch = 'idle'| 'fetching' | 'fetched'
 
-type UseFetchReturn = {
+/* type UseFetchReturn = {
 	status: StatusFetch;
-	data: Item[];
+	data: ResponseItems | Item;
+}
+ */
+type UseFetchReturn = {
+	status: StatusFetch,
+	data: {[key: string]: any}
 }
 
 /**
@@ -22,9 +27,9 @@ type UseFetchReturn = {
  * @param {*} [body={}]
  * @return {*}  {UseFetchReturn}
  */
-const useFetch = ( path: string, method: Methods = 'GET', body = {}): UseFetchReturn => {
+const useFetch = (path: string, method: Methods = 'GET', body = {}): UseFetchReturn => {
 	const [status, setStatus] = useState<UseFetchReturn['status']>( 'idle' )
-	const [data, setData] = useState<UseFetchReturn['data']>([])
+	const [data, setData] = useState<UseFetchReturn['data']>({})
 
 	useEffect(() => {
 		if ( !path ) return
@@ -46,7 +51,7 @@ const useFetch = ( path: string, method: Methods = 'GET', body = {}): UseFetchRe
 				} 
 			} catch (error) {
 				setStatus( 'fetched' )
-				setData( [] )
+				setData({})
 				openNotification('error', "Se ha presentado un error")
 			}
       
