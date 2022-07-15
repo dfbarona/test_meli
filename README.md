@@ -30,6 +30,7 @@ Puedes ver la documentación de la API en el siguiente enlace: https://documente
 ### Backend
 ```
 cd backend 
+cp .env.example .env
 npm install
 npm run dev
 ```
