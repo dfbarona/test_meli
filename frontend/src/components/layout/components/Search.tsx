@@ -1,6 +1,6 @@
 import IconoSearch from "./../../../assets/ic_Search@2x.png";
-import { useRef, useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useEffect, useRef } from "react";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 
 /**
@@ -14,8 +14,9 @@ const Search = (): JSX.Element => {
 	const [params] = useSearchParams()
   const query = params.get('search')
 	
-	const searchRef = useRef<HTMLInputElement | null>(null);
+	const searchRef = useRef<HTMLInputElement | null >(null);
 	const navigate = useNavigate()
+	const location = useLocation()
 	
 	const redirectSearch = () => navigate(`/items?search=${searchRef?.current?.value}`)
 	
@@ -28,6 +29,16 @@ const Search = (): JSX.Element => {
 			redirectSearch()
     }
 	}
+
+	useEffect(() => {
+		if(searchRef.current){
+			if(location.pathname === '/'){
+				searchRef.current.setAttribute('value', "")
+			}else {
+				searchRef.current.setAttribute('value', query as string)
+			}
+		}
+	}, [query, location])
 
 	return (
 		<div className="input-group">
