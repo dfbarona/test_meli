@@ -1,4 +1,4 @@
-const axios = require('axios')
+const axios = require('axios');
 
 /**
  * @description Consume API services
@@ -7,15 +7,15 @@ const axios = require('axios')
  * @param {*} path
  * @param {string} [method='GET']
  * @param {*} [params={}]
- * @return {*} 
+ * @return {*}
  */
 const handleRequest = async (path, method = 'GET', params = {}) => {
 	const { data } = await axios({
 		method: method,
 		url: process.env.API_URL + path,
-		params: params
-	})
-	return data
-}
+		params: params,
+	});
+	return data;
+};
 
-module.exports = handleRequest
+module.exports = handleRequest;

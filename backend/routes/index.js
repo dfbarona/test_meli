@@ -1,6 +1,6 @@
-const express = require('express')
-const fs = require('fs')
-const router = express.Router()
+const express = require('express');
+const fs = require('fs');
+const router = express.Router();
 
 const PATH_ROUTES = __dirname;
 
@@ -9,18 +9,17 @@ const PATH_ROUTES = __dirname;
  * @author David Barona <davidfbarona@gmail.com>
  * @date 10/07/2022
  * @param {*} filename
- * @return {*} 
+ * @return {*}
  */
 const removeExtension = (filename) => {
-    return filename.split('.').shift()
-}
-
+	return filename.split('.').shift();
+};
 
 fs.readdirSync(PATH_ROUTES).filter((file) => {
-    const name = removeExtension(file)
-    if (name != 'index') {
-        router.use(`/${name}`, require(`./${file}`))
-    }
+	const name = removeExtension(file);
+	if (name != 'index') {
+		router.use(`/${name}`, require(`./${file}`));
+	}
 });
 
-module.exports = router
+module.exports = router;
