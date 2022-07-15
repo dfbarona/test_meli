@@ -1,6 +1,7 @@
+import React from 'react';
 import './scss/styles.scss';
 
-import Skeleton from 'react-loading-skeleton'
+import Skeleton from 'react-loading-skeleton';
 
 /**
  * @description renderiza el skeleton de una tarjeta para un item o articulo
@@ -10,21 +11,29 @@ import Skeleton from 'react-loading-skeleton'
  */
 const SkeletonCardItem = (): JSX.Element => {
 	return (
-		<div className='card-item'>
-			<div className='card-item-img'>	
-				<Skeleton width={180} height={180}/>
+		<div className="card-item">
+			<div className="card-item-img">
+				<Skeleton width={180} height={180} />
 			</div>
-			<div className='card-item-content' style={{width:'100%'}}>
-				<div className='item-price'>
-					<span className='amount'><Skeleton /></span>
+			<div className="card-item-content" style={{ width: '100%' }}>
+				<div className="item-price">
+					<span className="amount">
+						<Skeleton />
+					</span>
 				</div>
 
-				<div className='item-title'><Skeleton /></div>
-				<div className='item-title'><Skeleton /></div>
-				<div className='item-title'><Skeleton /></div>
+				<div className="item-title">
+					<Skeleton />
+				</div>
+				<div className="item-title">
+					<Skeleton />
+				</div>
+				<div className="item-title">
+					<Skeleton />
+				</div>
 			</div>
 		</div>
-	)
-}
+	);
+};
 
-export default SkeletonCardItem
+export default SkeletonCardItem;

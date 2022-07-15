@@ -1,12 +1,11 @@
-export interface ReduxState{
+export interface ReduxState {
 	type: string;
 	payload: {
-		categories: string[]
-	},
+		categories: string[];
+	};
 }
 
 export const type = 'add';
-
 
 /**
  * @description
@@ -15,13 +14,13 @@ export const type = 'add';
  * @param {string[]} categories
  * @return {*}  {ReduxState}
  */
-export const categories = (categories: string[]) : ReduxState => {
-	return ({
+export const categories = (categories: string[]): ReduxState => {
+	return {
 		type,
 		payload: {
-			categories: categories
-		}
-	})
-}
+			categories: categories,
+		},
+	};
+};
 
 export default categories;

@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import Logo from "./../../../assets/Logo_ML@2x.png"
-import Search from "./Search"
-
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Logo from './../../../assets/Logo_ML@2x.png';
+import Search from './Search';
 
 /**
  * @description renderiza la cabecera del sitio
@@ -11,15 +11,17 @@ import Search from "./Search"
  */
 const Header = (): JSX.Element => {
 	return (
-		<header className='mel-header'>
+		<header className="mel-header">
 			<nav>
 				<div className="container-logo">
-				<Link to={'/'}><img src={Logo} alt="Logo" className="logo" /></Link>
+					<Link to={'/'}>
+						<img src={Logo} alt="Logo" className="logo" />
+					</Link>
 				</div>
-					<Search></Search>
-      </nav>
+				<Search></Search>
+			</nav>
 		</header>
-	)
-}
+	);
+};
 
-export default Header
+export default Header;

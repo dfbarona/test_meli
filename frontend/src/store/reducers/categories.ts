@@ -1,9 +1,9 @@
 type actionReducer = {
-	type: string
+	type: string;
 	payload: {
-		categories: string[]
-	}
-}
+		categories: string[];
+	};
+};
 
 /**
  * @description
@@ -11,16 +11,16 @@ type actionReducer = {
  * @date 14/07/2022
  * @param {[]} [state=[]]
  * @param {actionReducer} action
- * @return {*} 
+ * @return {*}
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const categoriesReducer = (state:[] = [], action: actionReducer): any => {
+const categoriesReducer = (state: [] = [], action: actionReducer): any => {
 	switch (action.type) {
 		case 'add':
-			return action.payload.categories
+			return action.payload.categories;
 		default:
 			return state;
 	}
-}
+};
 
-export default categoriesReducer
+export default categoriesReducer;

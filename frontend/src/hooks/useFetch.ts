@@ -1,22 +1,16 @@
-import axios from "axios"
-import { useState, useEffect } from "react"
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 
-import * as config from "../config/enviroments"
-import { Item } from "../interfaces/item"
-import { openNotification } from "../utils"
+import * as config from '../config/enviroments';
+import { openNotification } from '../utils';
 
-type Methods = 'GET' 
-type StatusFetch = 'idle'| 'fetching' | 'fetched'
+type Methods = 'GET';
+type StatusFetch = 'idle' | 'fetching' | 'fetched';
 
-/* type UseFetchReturn = {
-	status: StatusFetch;
-	data: ResponseItems | Item;
-}
- */
 type UseFetchReturn = {
-	status: StatusFetch,
-	data: {[key: string]: any}
-}
+	status: StatusFetch;
+	data: { [key: string]: any };
+};
 
 /**
  * @description Hook para controlar peticiones de carga iniciales
@@ -27,40 +21,43 @@ type UseFetchReturn = {
  * @param {*} [body={}]
  * @return {*}  {UseFetchReturn}
  */
-const useFetch = (path: string, method: Methods = 'GET', body = {}): UseFetchReturn => {
-	const [status, setStatus] = useState<UseFetchReturn['status']>( 'idle' )
-	const [data, setData] = useState<UseFetchReturn['data']>({})
+const useFetch = (
+	path: string,
+	method: Methods = 'GET',
+	body = {},
+): UseFetchReturn => {
+	const [status, setStatus] = useState<UseFetchReturn['status']>('idle');
+	const [data, setData] = useState<UseFetchReturn['data']>({});
 
 	useEffect(() => {
-		if ( !path ) return
+		if (!path) return;
 
 		const fetchData = async (): Promise<void> => {
-			setStatus( 'fetching' )
+			setStatus('fetching');
 
 			try {
-				await axios.get(config.API_URL + path, body)
+				await axios.get(config.API_URL + path, body);
 				const response = await axios({
 					method: method,
 					url: config.API_URL + path,
-					params: body
-				})
+					params: body,
+				});
 
-				if ( response.status === 200 && response.data ) {
-					setData( response.data )
-					setStatus( 'fetched' )
-				} 
+				if (response.status === 200 && response.data) {
+					setData(response.data);
+					setStatus('fetched');
+				}
 			} catch (error) {
-				setStatus( 'fetched' )
-				setData({})
-				openNotification('error', "Se ha presentado un error")
+				setStatus('fetched');
+				setData({});
+				openNotification('error', 'Se ha presentado un error');
 			}
-      
-		}
+		};
 
-		fetchData()
-	}, [path])
+		fetchData();
+	}, [path]);
 
-	return { status, data }
-}
+	return { status, data };
+};
 
-export default useFetch
+export default useFetch;

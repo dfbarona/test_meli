@@ -1,7 +1,7 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode } from 'react';
 
 interface Props {
-	children?: ReactNode
+	children?: ReactNode;
 }
 
 /**
@@ -9,12 +9,10 @@ interface Props {
  * @author David Barona <davidfbarona@gmail.com>
  * @date 12/07/2022
  * @param {Props} {children}
- * @return {*} 
+ * @return {*}
  */
-const Content = ({children}: Props) => {
-	return (
-		<main className='mel-main-content'>{children}</main>
-	)
-}
+const Content = ({ children }: Props) => {
+	return <main className="mel-main-content">{children}</main>;
+};
 
-export default Content
+export default Content;

@@ -1,4 +1,4 @@
-import toast from "react-hot-toast"
+import toast from 'react-hot-toast';
 
 /**
  * @description imprime un mensaje en pantalla
@@ -14,18 +14,18 @@ export const openNotification = (
 ): void => {
 	switch (type) {
 		case 'success':
-			toast.success(message)
+			toast.success(message);
 			break;
 		case 'error':
-			toast.error(message)
+			toast.error(message);
 			break;
 		case 'info':
 			toast(message, {
 				icon: '👏',
-			})
-			break
+			});
+			break;
 	}
-}
+};
 
 /**
  * @description formatea un numero como moneda
@@ -35,11 +35,14 @@ export const openNotification = (
  * @param {string} currency
  * @return {*} {void}
  */
-export const currency = (number: number, currency: string = '$', decimals: number = 2): string => {
+export const currency = (
+	number: number,
+	currency: string = '$',
+	decimals: number = 2,
+): string => {
 	return new Intl.NumberFormat('es-AR', {
 		style: 'currency',
-		currency: currency, 
-		minimumFractionDigits: decimals
-	}).format(number)
-
+		currency: currency,
+		minimumFractionDigits: decimals,
+	}).format(number);
 };

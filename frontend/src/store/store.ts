@@ -3,7 +3,6 @@ import configureStore from './configureStore';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let store: any = null;
 
-
 /**
  * @description
  * @author David Barona <davidfbarona@gmail.com>
@@ -12,7 +11,7 @@ let store: any = null;
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const getStore = (): any => {
-	if ( store === null ) {
+	if (store === null) {
 		const result = configureStore();
 		store = result.store;
 	}

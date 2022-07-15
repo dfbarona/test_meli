@@ -1,12 +1,12 @@
-import React from 'react'
+import React from 'react';
 
 import './scss/styles.scss';
 
-import { Outlet } from "react-router-dom";
-import {Toaster} from "react-hot-toast"
-import Header from './components/Header'
-import Breadcrumbs from './components/Breadcrumbs'
-import Content from './components/Content'
+import { Outlet } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+import Header from './components/Header';
+import Breadcrumbs from './components/Breadcrumbs';
+import Content from './components/Content';
 
 /**
  * @description renderiza el layout principal
@@ -16,17 +16,15 @@ import Content from './components/Content'
  */
 const Layout = (): JSX.Element => {
 	return (
-		<section className='mel-container'>
+		<section className="mel-container">
 			<Header />
 			<Breadcrumbs />
-			<Content> 
+			<Content>
 				<Outlet />
 			</Content>
-			<Toaster 
-				position="bottom-left"
-			/>
+			<Toaster position="bottom-left" />
 		</section>
-	)
-}
+	);
+};
 
-export default Layout
+export default Layout;

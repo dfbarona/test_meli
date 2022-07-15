@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import categories from '../../../store/actions/categories';
 
 /**
@@ -9,16 +9,13 @@ import categories from '../../../store/actions/categories';
  * @return {*}  {JSX.Element}
  */
 const Home = (): JSX.Element => {
-  const dispatch = useDispatch()
+	const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(categories([]))
-  }, [])
+	useEffect(() => {
+		dispatch(categories([]));
+	}, []);
 
-  return (
-  <>
-  </>
-  )
-}
+	return <></>;
+};
 
-export default Home
+export default Home;

@@ -1,7 +1,6 @@
 import { createStore } from 'redux';
 import rootReducer from './reducers/rootReducer';
 
-
 /**
  * @description
  * @author David Barona <davidfbarona@gmail.com>
@@ -11,7 +10,7 @@ import rootReducer from './reducers/rootReducer';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const configureStore = (): any => {
 	// Allow multiple enhancers
-	const store = createStore( rootReducer );
+	const store = createStore(rootReducer);
 
 	return { store };
 };
